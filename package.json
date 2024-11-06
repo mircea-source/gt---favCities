@@ -2,19 +2,22 @@
   "name": "gt---favcities",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/cssinjs": "^1.21.1",
     "@ant-design/nextjs-registry": "^1.0.1",
     "antd": "^5.21.6",
     "next": "15.0.2",
-    "next-transpile-modules": "^10.0.1",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "15.0.2"
   }
 }
