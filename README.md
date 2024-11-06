@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# FavCities
+
+This is a [Next.js](https://nextjs.org) project where users can search for cities, view information about them, and save them to their favorites. The project uses Ant Design for UI components.
 
 ## Getting Started
 
@@ -16,25 +18,53 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Project Structure
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The project has the following structure:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+```
+/src
+  /components
+    NavBar.js
+    NavBar.module.css
+  /pages
+    _app.js
+    index.js
+    search.js
+    city.js
+    favorites.js
+  /styles
+    globals.css
+/public
+  next.svg
+package.json
+next.config.js
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pages
+
+- **Home Page**: The main landing page.
+- **Search Page**: Allows users to search for cities.
+- **City Page**: Displays information about a specific city.
+- **Favorites Page**: Shows a list of favorite cities saved by the user.
+
+## Dependencies
+
+- `next`: The Next.js framework.
+- `react`: React library.
+- `react-dom`: React DOM library.
+- `antd`: Ant Design for UI components.
+- `@ant-design/nextjs-registry`: Integration of Ant Design with Next.js.
+- `next-transpile-modules`: To transpile ESM modules.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about Next.js and Ant Design, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs) - Learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - An interactive Next.js tutorial.
+- [Ant Design Documentation](https://ant.design/docs/react/introduce) - Learn about Ant Design components and usage.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Workout
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+This project is a workout for JavaScript module of Generatia Tech initiative.
