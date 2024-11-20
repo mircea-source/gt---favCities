@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { message, Button } from 'antd';
+import { message, Button, Spin } from 'antd';
 import NavBar from '../components/NavBar';
 import styles from '../styles/page.module.css';
 import { supabase } from '../../lib/supabase';
@@ -9,32 +9,51 @@ export default function CityPage() {
   const router = useRouter();
   const { id } = router.query;
   const [cityDetails, setCityDetails] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (id) {
-      const fetchCityDetails = async () => {
-        const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities/${id}`;
-        const options = {
-          method: 'GET',
-          headers: {
-            'x-rapidapi-key': '2d8c05fc21msh9b2c0e952731b0ap14cecdjsn4718408c1a1d',
-            'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
-          }
-        };
+    if (!router.isReady) {
+      return;
+    }
 
-        try {
-          const response = await fetch(url, options);
-          const data = await response.json();
-          setCityDetails(data.data);
-        } catch (error) {
-          console.error(error);
-          message.error('Failed to fetch city details');
+    if (!id) {
+      setLoading(false);
+      return;
+    }
+
+    const fetchCityDetails = async () => {
+      const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities/${id}`;
+      const options = {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-key': '2d8c05fc21msh9b2c0e952731b0ap14cecdjsn4718408c1a1d',
+          'x-rapidapi-host': 'wft-geo-db.p.rapidapi.com'
         }
       };
 
-      fetchCityDetails();
-    }
-  }, [id]);
+      try {
+        const response = await fetch(url, options);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || 'Failed to fetch city details');
+        }
+
+        if (!data.data) {
+          throw new Error('No city data found');
+        }
+
+        setCityDetails(data.data);
+      } catch (error) {
+        console.error('Error fetching city:', error);
+        message.error(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCityDetails();
+  }, [router.isReady, id]);
 
   const handleAddToFavorites = async () => {
     if (!cityDetails) return;
@@ -42,7 +61,7 @@ export default function CityPage() {
     const { city, country, population, region } = cityDetails;
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('favorites')
         .insert([{ city, country, population, region }]);
 
@@ -52,16 +71,29 @@ export default function CityPage() {
 
       message.success('City added to favorites');
     } catch (error) {
-      console.error(error);
+      console.error('Error adding to favorites:', error);
       message.error('Failed to add city to favorites');
     }
   };
+
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <NavBar />
+        <main className={styles.main}>
+          <Spin size="large" />
+        </main>
+      </div>
+    );
+  }
 
   if (!cityDetails) {
     return (
       <div className={styles.page}>
         <NavBar />
-        <p>No search in progress.</p>
+        <main className={styles.main}>
+          <p>City not found</p>
+        </main>
       </div>
     );
   }
