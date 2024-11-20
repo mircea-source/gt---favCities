@@ -1,11 +1,4 @@
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
   display: grid;
   grid-template-rows: 20px 1fr 20px;
   align-items: center;
@@ -14,4 +7,27 @@
   padding: 80px;
   gap: 64px;
   font-family: var(--font-geist-sans);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  color: #c2c2c2
+}
+
+.main button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
 }

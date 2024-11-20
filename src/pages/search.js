@@ -1,5 +1,6 @@
 import { Input, List, Card, message } from 'antd';
 import { useState } from 'react';
+import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import styles from '../styles/page.module.css';
 
@@ -72,7 +73,7 @@ export default function SearchPage() {
           loading={loading}
           renderItem={(item) => (
             <List.Item>
-              <Card title={item.city}>
+              <Card title={<Link href={`/city?id=${item.id}`}>{item.city}</Link>}>
                 <p>Country: {item.country}</p>
                 <p>Population: {item.population}</p>
                 <p>Region: {item.region}</p>

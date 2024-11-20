@@ -41,14 +41,14 @@ export default function SignIn({ csrfToken }) {
             name="username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            <Input name="username" />
+            <Input name="username" placeholder="admin" />
           </Form.Item>
           <Form.Item
             label="Password"
             name="password"
             rules={[{ required: true, message: 'Please input your password!' }]}
           >
-            <Input.Password name="password" />
+            <Input.Password name="password" placeholder="password" />
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading}>
