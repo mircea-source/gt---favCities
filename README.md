@@ -23,22 +23,24 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 The project has the following structure:
 
 ```
-/src
-  /components
-    NavBar.js
-    NavBar.module.css
-  /pages
-    _app.js
-    index.js
-    search.js
-    city.js
-    favorites.js
-  /styles
-    globals.css
-/public
-  next.svg
-package.json
-next.config.js
+gt---favcities/
+├── lib/
+│   └── auth.js
+├── pages/
+│   ├── api/
+│   │   └── auth/
+│   │       └── [...nextauth].js
+│   ├── auth/
+│   │   └── signin.js
+│   ├── _app.js
+│   └── index.js
+├── components/
+│   └── NavBar.js
+├── styles/
+│   └── globals.css
+│   └── page.module.css
+├── .env.local
+└── package.json
 ```
 
 ## Pages
