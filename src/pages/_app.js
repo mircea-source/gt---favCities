@@ -1,13 +1,12 @@
-import { StrictMode } from 'react';
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { SessionProvider } from 'next-auth/react';
 import '../styles/globals.css';
 
-export default function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <StrictMode>
-      <AntdRegistry>
-        <Component {...pageProps} />
-      </AntdRegistry>
-    </StrictMode>
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
   );
 }
+
+export default MyApp;
