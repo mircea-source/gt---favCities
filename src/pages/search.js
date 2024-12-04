@@ -1,10 +1,11 @@
-import { Input, List, Card, message } from 'antd';
+import { Input, List, Card, Typography, message } from 'antd';
 import { useState } from 'react';
 import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import styles from '../styles/page.module.css';
 
 const { Search } = Input;
+const { Text } = Typography;
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,7 +38,7 @@ export default function SearchPage() {
       setResults([]);
       return;
     }
-    
+
     setLoading(true);
     try {
       const citiesData = await fetchCities(value);
@@ -55,7 +56,7 @@ export default function SearchPage() {
       <NavBar />
       <main className={styles.main}>
         <h1>Search Cities</h1>
-        
+
         <Search
           placeholder="Enter city name..."
           allowClear
@@ -66,6 +67,10 @@ export default function SearchPage() {
           loading={loading}
           style={{ width: 400, marginBottom: 20 }}
         />
+
+        <Text type="secondary" style={{ marginBottom: 20, display: 'block' }}>
+          Click on the city name to add it to your Favorites.
+        </Text>
 
         <List
           grid={{ gutter: 16, column: 3 }}

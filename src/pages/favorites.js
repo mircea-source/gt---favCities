@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { List, Card, message } from 'antd';
+import Link from 'next/link'; 
 import NavBar from '../components/NavBar';
 import styles from '../styles/page.module.css';
 import { supabase } from '../../lib/supabase';
@@ -43,7 +44,13 @@ export default function Favorites() {
           loading={loading}
           renderItem={(item) => (
             <List.Item>
-              <Card title={item.city}>
+              <Card
+                title={
+                  <Link href={`/city?id=${item.id}`}>
+                    {item.city}
+                  </Link>
+                }
+              >
                 <p>Country: {item.country}</p>
                 <p>Population: {item.population}</p>
                 <p>Region: {item.region}</p>
